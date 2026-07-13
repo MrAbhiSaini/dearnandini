@@ -16,16 +16,16 @@ document.addEventListener("DOMContentLoaded", () => {
     // Premium Dataset Matrix for Nandini's Gallery (Supports 10-20 Photos easily)
     // Add paths to your images folder inside 'src'
     const memoriesData = [
-        { src: "images/photo1.jpg", title: "Eternal Grace", desc: "Every time you smile, the world gets a little brighter." },
-        { src: "images/pic2.jpg", title: "Purest Heart", desc: "Kindness is your superpower, and love is your language." },
-        { src: "images/pic3.jpg", title: "Mesmerizing Eyes", desc: "Looking into your eyes feels like a beautiful dream." },
-        { src: "images/pic4.jpg", title: "Unstoppable Joy", desc: "Spreading warmth wherever you step." },
-        { src: "images/pic5.jpg", title: "The Queen Style", desc: "Elegance isn't noticed, it's remembered forever." },
-        { src: "images/photo6.jpg", title: "Sweetest Memories", desc: "Moments turned into treasures, locked in my heart." },
-        { src: "images/photo7.jpg", title: "Radiant Glow", desc: "Shinning brighter than a thousand stars combined." },
-        { src: "images/photo8.jpg", title: "My Happy Place", desc: "With you, every single second feels like home." },
-        { src: "images/photo9.jpg", title: "Timeless Beauty", desc: "Growing more breathtakingly beautiful each day." },
-        { src: "images/photo10.jpg", title: "Absolute Perfection", desc: "Created with pure magic and absolute perfection." }
+        { src: "images/photo1.webp", title: "Eternal Grace", desc: "Every time you smile, the world gets a little brighter." },
+        { src: "images/pic2.webp", title: "Purest Heart", desc: "Kindness is your superpower, and love is your language." },
+        { src: "images/pic3.webp", title: "Mesmerizing Eyes", desc: "Looking into your eyes feels like a beautiful dream." },
+        { src: "images/pic4.webp", title: "Unstoppable Joy", desc: "Spreading warmth wherever you step." },
+        { src: "images/pic5.webp", title: "The Queen Style", desc: "Elegance isn't noticed, it's remembered forever." },
+        { src: "images/photo6.webp", title: "Sweetest Memories", desc: "Moments turned into treasures, locked in my heart." },
+        { src: "images/photo7.webp", title: "Radiant Glow", desc: "Shinning brighter than a thousand stars combined." },
+        { src: "images/photo8.webp", title: "My Happy Place", desc: "With you, every single second feels like home." },
+        { src: "images/photo9.webp", title: "Timeless Beauty", desc: "Growing more breathtakingly beautiful each day." },
+        { src: "images/photo10.webp", title: "Absolute Perfection", desc: "Created with pure magic and absolute perfection." }
     ];
 
     // 1. DYNAMICALLY BUILD GALLERY SLIDER CARDS
