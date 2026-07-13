@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Nandini ❤️</title>
+    
+    <!-- Google Fonts & FontAwesome for Premium Typography & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-regular/7.0.0/css/all.min.css">
+    
+    <!-- Premium Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+
+    <!-- ==========================================
+         1. CINEMATIC LOADER (ULTRA-PREMIUM MINI MALIST EDITION)
+         ========================================== -->
+    <div id="cinematic-loader" class="loader-container" style="cursor: pointer;">
+        <canvas id="stars-canvas"></canvas>
+        <div class="loader-content">
+            <h1 class="loader-title">Dear Nandini ❤️</h1>
+            <p class="loader-subtitle">A cinematic journey of love...</p>
+            
+            <!-- Ultra-Luxury Smooth Interaction Core -->
+            <div id="loader-interactive-pulse" class="premium-pulse-wrapper">
+                <div class="pulse-ring"></div>
+                <div class="pulse-center">
+                    <i class="fas fa-play" style="margin-left: 3px; font-size: 0.9rem; color: #fff;"></i>
+                </div>
+                <span class="pulse-text">Tap to Unveil</span>
+            </div>
+
+            <!-- Sleek Horizontal Line Loader (No bulky text labels) -->
+            <div id="loader-progress-zone" class="hidden" style="margin-top: 40px; width: 240px; margin-left: auto; margin-right: auto;">
+                <div class="loader-progress-bar" style="height: 1px; background: rgba(255,255,255,0.05);">
+                    <div class="progress-fill" style="box-shadow: 0 0 15px var(--gold-glow);"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUDIO ELEMENT (Hidden, Controlled via JS) -->
+    <audio id="bg-track-loading" loop><source src="music/piano_intro.mp3" type="audio/mpeg"></audio>
+    <audio id="bg-track-hero" loop><source src="music/heeriye_inst.mp3" type="audio/mpeg"></audio>
+    <audio id="bg-track-gallery" loop><source src="music/omaahi_inst.mp3" type="audio/mpeg"></audio>
+    <audio id="bg-track-birthday" loop><source src="music/birthday_inst.mp3" type="audio/mpeg"></audio>
+        <source src="music/birthday.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- GLOBAL MUSIC CONTROL BUTTON -->
+    <button id="music-toggle" class="music-btn hidden" aria-label="Toggle Music">
+        <div class="music-icon-wrapper">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+        </div>
+    </button>
+
+    <!-- MAIN APP WRAPPER (Hidden initially for smooth intro) -->
+    <main id="main-content" class="content-wrapper hidden">
+
+        <!-- ==========================================
+             2. HERO SECTION
+             ========================================== -->
+        <section id="hero" class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="hero-bg-video-container">
+                <!-- Fallback premium black aesthetic if video isn't there -->
+                <video autoplay muted loop playsinline class="hero-video">
+                    <source src="videos/intro.mp4" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-photo-wrapper">
+                    <img src="images/photo1.jpg" alt="Nandini" class="hero-profile-img">
+                    <div class="glow-ring"></div>
+                </div>
+                <h2 class="hero-title animate-glow">Happy Birthday <span class="highlight">Nandini</span> ❤️</h2>
+                <p class="hero-tagline">You deserve a celebration as beautiful as your smile.</p>
+                <button id="start-journey-btn" class="btn premium-btn">
+                    <span>Begin Our Journey</span>
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            
+            <div class="floating-hearts-container" id="hero-hearts"></div>
+        </section>
+
+        <!-- ==========================================
+             3. MEMORY GALLERY (Premium Card Slider)
+             ========================================== -->
+        <section id="gallery" class="gallery-section section-padding">
+            <div class="section-header">
+                <span class="section-subtitle">Captured Moments</span>
+                <h3 class="section-title">Our Memory Gallery</h3>
+                <div class="divider"></div>
+            </div>
+
+            <div class="slider-container">
+                <div class="slider-wrapper" id="gallery-wrapper">
+                    <!-- Cards will be dynamically generated by gallery.js for 10-20 photos -->
+                </div>
+                
+                <!-- Slider Controls -->
+                <button class="slider-arrow prev-arrow" id="prev-btn">&lt;</button>
+                <button class="slider-arrow next-arrow" id="next-btn">&gt;</button>
+            </div>
+
+            <!-- Lightbox for Zoom on Click -->
+            <div id="gallery-lightbox" class="lightbox hidden">
+                <span class="close-lightbox">&times;</span>
+                <img class="lightbox-content" id="lightbox-img">
+                <div id="lightbox-caption"></div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             4. LETTER SECTION (Glassmorphism + Typewriter)
+             ========================================== -->
+        <section id="letter" class="letter-section section-padding">
+            <div class="container">
+               <!-- LUXURY WAX SEAL ENVELOPE OVERLAY (EMOJI CORE FIX) -->
+                <div class="glass-card letter-card">
+                    <div class="heart-seal">❤️</div>
+                    <div class="letter-text-container">
+                        <div id="typewriter-text" class="typewriter-output"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             5. TIMELINE SECTION
+             ========================================== -->
+        <section id="timeline" class="timeline-section section-padding">
+            <div class="section-header">
+                <span class="section-subtitle">The Years of Grace</span>
+                <h3 class="section-title">Beautiful Evolution</h3>
+                <div class="divider"></div>
+            </div>
+
+            <div class="timeline-container">
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+
+                <!-- 2014 Node -->
+               <div class="timeline-item left-item">
+    <div class="timeline-dot"></div>
+    <div class="timeline-content glass-card">
+        <span class="timeline-year">2014</span>
+        <h4>Innocent Moments 🌸</h4>
+        <p>A beautiful throwback to this year. Even back then, that innocent glow and sweet essence showed the world how extraordinarily special you are destined to be.</p>
+        <img src="images/photo2.jpg" alt="2014" class="timeline-img">
+    </div>
+</div>
+
+                <!-- 2020 Node -->
+                <div class="timeline-item right-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-year">2020</span>
+                        <h4>Growing Beautiful 🌸</h4>
+                        <p>Grace, elegance, and kindness started shaping up. Transforming into an absolute masterpiece day by day.</p>
+                        <img src="images/photo3.jpg" alt="2020" class="timeline-img">
+                    </div>
+                </div>
+
+                <!-- 2024 Node -->
+                <div class="timeline-item left-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-year">2024</span>
+                        <h4>Beautiful Smile ❤️</h4>
+                        <p>That mesmerizing smile capable of lighting up the darkest rooms and melting the coldest hearts. Pure magic.</p>
+                        <img src="images/photo4.jpg" alt="2024" class="timeline-img">
+                    </div>
+                </div>
+
+                <!-- 2026 Node -->
+                <div class="timeline-item right-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass-card">
+                        <span class="timeline-year">2026</span>
+                        <h4>Happy Birthday 🎂</h4>
+                        <p>Today, we celebrate the most special person in existence. The center of my universe. Cheers to your beautiful day!</p>
+                        <img src="images/photo5.jpg" alt="2026" class="timeline-img">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             6 & 7. CELEBRATION & FINAL SURPRISE CANVAS
+             ========================================== -->
+        <section id="surprise" class="surprise-section section-padding">
+            <!-- Dedicated Fullscreen Canvas for Professional Fireworks/Confetti -->
+            <canvas id="celebration-canvas"></canvas>
+
+            <div class="surprise-content glass-card">
+                <h2 class="surprise-title animate-pop">Happy Birthday Nandini ❤️</h2>
+                
+                <blockquote class="surprise-message">
+                    "May every dream of yours come true, may your smile never fade, and may happiness always stay with you."
+                </blockquote>
+<div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <button id="final-celebrate-btn" class="btn magic-btn">Celebrate ✨</button>
+            
+            <button id="funny-mem-btn" class="btn premium-btn" style="border: 1px solid #ff4d6d !important; background: transparent; color: #fff; cursor: pointer; box-shadow: 0 0 15px rgba(255,77,109,0.2); padding: 16px 36px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; border-radius: 4px;">Secret Clip 🤫</button>
+        </div>
+
+        <div id="funny-video-modal" class="hidden" style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); z-index: 10000; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px;">
+            <div style="position: relative; width: 100%; max-width: 500px; background: #000; border: 2px solid var(--gold-primary); border-radius: 8px; overflow: hidden; box-shadow: 0 0 40px rgba(214,175,55,0.4);">
+                
+                <button id="close-funny-modal" style="position: absolute; top: 10px; right: 15px; background: rgba(0,0,0,0.6); border: none; color: #fff; font-size: 1.5rem; cursor: pointer; z-index: 10002; width: 35px; height: 35px; border-radius: 50%;">×</button>
+                
+                <video id="funny-video-player" src="videos/funny.mp4" controls style="width: 100%; display: block; max-height: 70vh;"></video>
+            </div>
+            <p style="margin-top: 20px; font-family: 'Montserrat', sans-serif; letter-spacing: 2px; color: var(--gold-primary); text-transform: uppercase; font-size: 0.8rem; text-align: center;">Keep Smiling, Queen! 👑</p>
+         </div>
+        </div>
+        </div>
+        </section>
+
+      <!-- ==========================================================================
+             DEDICATED PREMIUM PRIVATE PASSWORD VAULT SECTION
+             ========================================================================== -->
+        <section id="private-vault-section" class="section-padding" style="background: radial-gradient(circle at center, #110c16 0%, #070709 100%); border-top: 1px solid rgba(212, 175, 55, 0.1); position: relative; overflow: hidden;">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle" style="color: var(--rose-accent); font-family: var(--font-montserrat); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 6px; display: block; margin-bottom: 10px;">Top Secret 🤫</span>
+                    <h2 class="section-title" style="font-family: var(--font-cinzel); color: #fff; font-size: 2.5rem; font-weight: 400; letter-spacing: 2px;">Our Special Memories</h2>
+                    <div class="divider" style="width: 60px; height: 2px; background: linear-gradient(90deg, var(--rose-accent), var(--gold-primary)); margin: 20px auto 0 auto; border-radius: 2px;"></div>
+                </div>
+
+                <!-- PREMIUM PASSWORD PROMPT CARD -->
+                <div id="vault-lock-screen" class="glass-card" style="max-width: 480px; margin: 40px auto; padding: 50px 40px; text-align: center; border: 1px solid rgba(212, 175, 55, 0.2); box-shadow: 0 30px 60px rgba(0,0,0,0.7); background: rgba(18, 18, 26, 0.55); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 12px; transition: var(--transition-smooth);">
+                    
+                    <!-- Premium Glowing Lock Icon -->
+                    <div style="width: 80px; height: 80px; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto; box-shadow: 0 0 20px rgba(214, 175, 55, 0.05);">
+                        <span style="font-size: 2.2rem; filter: drop-shadow(0 0 10px rgba(214,175,55,0.4));">🔒</span>
+                    </div>
+                    
+                    <h3 style="font-family: var(--font-montserrat); font-size: 0.9rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 25px; color: var(--gold-primary); font-weight: 500; text-shadow: 0 0 8px rgba(214,175,55,0.3);">Enter Secret Key to Access</h3>
+                    
+                    <!-- Luxury Textures Input -->
+                    <input type="password" id="vault-password-input" placeholder="••••••••" style="width: 100%; padding: 16px; background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.08); border-radius: 4px; color: #fff; font-family: var(--font-montserrat); text-align: center; letter-spacing: 6px; font-size: 1.1rem; margin-bottom: 25px; outline: none; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);">
+                    
+                    <button id="unlock-vault-btn" class="btn premium-btn" style="width: 100%; border: 1px solid var(--gold-primary); box-shadow: 0 0 15px rgba(212, 175, 55, 0.1); padding: 16px 36px; font-family: var(--font-montserrat); font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: #fff; background: transparent; cursor: pointer; border-radius: 4px; transition: var(--transition-smooth);">Unlock Private Vault</button>
+                    
+                    <p id="vault-error-msg" class="hidden" style="color: #ff4d6d; font-size: 0.85rem; margin-top: 15px; font-family: var(--font-montserrat); letter-spacing: 1px; font-weight: 400;"></p>
+                </div>
+
+                <!-- HIDDEN PRIVATE PHOTOS CONTENT (HEIGHT & PADDING ALIGNMENT FIX) -->
+                <div id="secure-vault-content" class="hidden" style="opacity: 0;">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; justify-content: center; max-width: 1000px; margin: 0 auto; padding: 20px 0;">
+                        
+                        <!-- SECRET PHOTO 1 -->
+                        <div class="gallery-card" style="background: #ffffff !important; padding: 12px 12px 35px 12px !important; border-radius: 2px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); transform: rotate(-1.5deg); transition: all 0.4s ease; min-height: 460px !important;">
+                            <div style="width: 100%; height: 380px; overflow: hidden; background: #111; border-radius: 1px;">
+                                <img src="images/vault1.jpg" alt="Secret Memory 1" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                            </div>
+                            <p style="margin-top: 15px; font-family: var(--font-cursive); font-size: 2.1rem !important; text-align: center; color: #1a1a1a !important; font-weight: 400; line-height: 1.2; display: block !important; visibility: visible !important;">Together Forever 💖</p>
+                        </div>
+
+                        <!-- SECRET PHOTO 2 -->
+                        <div class="gallery-card" style="background: #ffffff !important; padding: 12px 12px 35px 12px !important; border-radius: 2px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); transform: rotate(1deg); transition: all 0.4s ease; min-height: 460px !important;">
+                            <div style="width: 100%; height: 380px; overflow: hidden; background: #111; border-radius: 1px;">
+                                <img src="images/vault2.jpg" alt="Secret Memory 2" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                            </div>
+                            <p style="margin-top: 15px; font-family: var(--font-cursive); font-size: 2.1rem !important; text-align: center; color: #1a1a1a !important; font-weight: 400; line-height: 1.2; display: block !important; visibility: visible !important;">Good Vibes Only ✨</p>
+                        </div>
+
+                        <!-- SECRET PHOTO 3 -->
+                        <div class="gallery-card" style="background: #ffffff !important; padding: 12px 12px 35px 12px !important; border-radius: 2px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); transform: rotate(-2deg); transition: all 0.4s ease; min-height: 460px !important;">
+                            <div style="width: 100%; height: 380px; overflow: hidden; background: #111; border-radius: 1px;">
+                                <img src="images/vault3.jpg" alt="Secret Memory 3" style="width: 100%; height: 100%; object-fit: cover; object-position: center;">
+                            </div>
+                            <p style="margin-top: 15px; font-family: var(--font-cursive); font-size: 2.1rem !important; text-align: center; color: #1a1a1a !important; font-weight: 400; line-height: 1.2; display: block !important; visibility: visible !important;">Our Mood Style 😎</p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             8. PREMIUM FOOTER
+             ========================================== -->
+        <footer class="premium-footer">
+            <p>Made with ❤️ by <span class="creator-name">Dudu</span></p>
+            <p class="copyright">&copy; 2026 All Rights Reserved for the Queen</p>
+        </footer>
+
+    </main>
+
+    <!-- ==========================================
+         SCRIPTS ARCHITECTURE
+         ========================================== -->
+    <script src="js/animations.js"></script> <!-- Substituted to handle generic design dynamic effects -->
+    <script src="js/fireworks.js"></script>
+    <script src="js/gallery.js"></script>
+    <script src="js/typing.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

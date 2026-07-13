@@ -1,0 +1,154 @@
+/* ==========================================================================
+   PREMIUM MOTION & CINEMATIC CINEMATOGRAPHY ENGINE
+   ========================================================================== */
+
+/* 1. Cinematic Smooth Fades */
+.fade-in-premium {
+    animation: fadeInPremium 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.fade-out-premium {
+    animation: fadeOutPremium 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeInPremium {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOutPremium {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+/* 2. Premium Glow Triggers */
+.animate-glow {
+    animation: premiumGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes premiumGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2),
+                     0 0 20px rgba(212, 175, 55, 0.2);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 77, 109, 0.5),
+                     0 0 40px rgba(255, 77, 109, 0.3),
+                     0 0 60px rgba(212, 175, 55, 0.4);
+    }
+}
+
+/* 3. Floating Hearts Engine (For Hero Section background) */
+.floating-heart {
+    position: absolute;
+    bottom: -5%;
+    color: rgba(255, 77, 109, 0.6);
+    font-size: 1.5rem;
+    pointer-events: none;
+    z-index: 2;
+    animation: floatUp &Smooth 6s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-105vh) translateX(var(--random-x, 50px)) rotate(var(--random-rot, 360deg)) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* 4. Elegant Text Pop-Up Triggers (For Final Surprise) */
+.animate-pop {
+    opacity: 0;
+    transform: scale(0.85);
+    animation: luxuriousPop 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes luxuriousPop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* 5. Smooth Scroll Micro-Interactions (Reveal class used via JS Observer) */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1), 
+                transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-on-scroll.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* 6. Cinematic Loading Screen Text Pulse */
+.loader-title {
+    animation: cinematicPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes cinematicPulse {
+    0% {
+        transform: scale(0.98);
+        letter-spacing: 2px;
+        opacity: 0.85;
+    }
+    100% {
+        transform: scale(1.02);
+        letter-spacing: 4px;
+        opacity: 1;
+        text-shadow: 0 0 30px rgba(255, 77, 109, 0.8), 0 0 50px rgba(212, 175, 55, 0.4);
+    }
+}
+
+/* ==========================================================================
+   UPGRADE: CINEMATIC FALLING ROSE PETALS ENGINE
+   ========================================================================== */
+.rose-petal {
+    position: fixed; /* Fixed position stays uniform across screen scroll */
+    top: -10%;
+    z-index: 9998; /* Under loader but above other components */
+    pointer-events: none;
+    animation: dropPetal 10s linear infinite;
+    opacity: 0.85;
+}
+
+@keyframes dropPetal {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.85;
+    }
+    90% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateY(110vh) translateX(var(--petal-x, 100px)) rotate(var(--petal-rot, 720deg));
+        opacity: 0;
+    }
+}
