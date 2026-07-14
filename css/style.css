@@ -635,6 +635,60 @@ body {
 /* ==========================================================================
    RESPONSIVE DESIGN ADAPTATIONS (MEDIA QUERIES)
    ========================================================================== */
+
+/* ==========================================================================
+   1. PC/Desktop ke liye strict alternating layout code
+   ========================================================================== */
+@media (min-width: 769px) {
+    .timeline-container {
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+        width: 100% !important;
+    }
+
+    .timeline-item {
+        width: 45% !important;
+        position: relative !important;
+        margin: 40px 0 !important;
+    }
+
+    /* 1st, 3rd (2014, 2024) ko STRICTLY LEFT me force karega */
+    .timeline-item:nth-child(even) {
+        align-self: flex-start !important;
+        margin-right: auto !important;
+        margin-left: 0 !important;
+        padding-right: 40px !important;
+        padding-left: 0 !important;
+    }
+
+    /* LEFT card ke dots ko perfectly center line par align karega */
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: auto !important;
+        right: -40px !important;
+        top: 50% !important;
+        transform: translate(50%, -50%) !important;
+    }
+
+    /* 2nd, 4th (2020, 2026) ko STRICTLY RIGHT me force karega */
+    .timeline-item:nth-child(odd) {
+        align-self: flex-end !important;
+        margin-left: auto !important;
+        margin-right: 0 !important;
+        padding-left: 40px !important;
+        padding-right: 0 !important;
+    }
+
+    /* RIGHT card ke dots ko perfectly center line par align karega */
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: auto !important;
+        left: -40px !important;
+        top: 50% !important;
+        transform: translate(-50%, -50%) !important;
+    }
+}
+
+/* 2. Mobile ke liye responsive adjustments */
 @media (max-width: 768px) {
     .loader-title { font-size: 2.8rem; }
     .hero-title { font-size: 2.3rem; }
@@ -647,19 +701,87 @@ body {
     .timeline-dot { left: 13px !important; }
     
     .letter-card { padding: 40px 25px; }
+    
     .letter-text-container, 
-.letter-text-container *, 
-.letter-card p, 
-#typing-text {
-    font-family: 'Poppins', 'Montserrat', -apple-system, sans-serif !important;
-    font-size: 1.1rem !important;
-    line-height: 1.7 !important;
-    letter-spacing: 0.5px !important;
-}
+    .letter-text-container *, 
+    .letter-card p, 
+    #typing-text {
+        font-family: 'Poppins', 'Montserrat', -apple-system, sans-serif !important;
+        font-size: 1.1rem !important;
+        line-height: 1.7 !important;
+        letter-spacing: 0.5px !important;
+    }
 
     .surprise-title { font-size: 2.5rem; }
     .surprise-content { padding: 35px 20px; }
     .music-btn { bottom: 20px; right: 20px; width: 48px; height: 48px; }
+    
+    /* Hero Photo & Ring Animation Fix - Final Layout */
+    .hero-photo-wrapper {
+        position: relative !important;
+        margin: 0 auto 20px auto !important;
+        width: 150px !important;
+        height: 150px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+    
+    .hero-photo-wrapper img {
+        width: 140px !important;
+        height: 140px !important;
+        object-fit: cover !important;
+        border-radius: 50% !important;
+        position: relative !important;
+        z-index: 2 !important;
+    }
+    
+    /* Hero Photo Ring Fix - Specific Targeting */
+    .hero-photo-wrapper .glow-ring, 
+    .hero-photo-wrapper [class*="ring"] {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        border-radius: 50% !important;
+        box-sizing: border-box !important;
+        z-index: 1 !important;
+        margin: 0 !important;
+        animation: rotateRing 10s linear infinite !important;
+    }
+
+    /* LOADER INTERACTIVE PULSE BUTTON STRICT CENTER FIX */
+    .loader-interactive-pulse,
+    div[class*="loader-interactive"],
+    #tap-to-unveil {
+        position: relative !important;
+        margin: 40px auto 0 auto !important;
+        width: 60px !important;
+        height: 60px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .loader-interactive-pulse *,
+    div[class*="loader-interactive"] *,
+    .loader-interactive-pulse::before,
+    .loader-interactive-pulse::after {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        margin: auto !important;
+    }
+
+    .loader-interactive-pulse + span, 
+    .loader-interactive-pulse + p {
+        text-align: center !important;
+        display: block !important;
+        margin-top: 15px !important;
+    }
 }
 
 @keyframes soundWave {
