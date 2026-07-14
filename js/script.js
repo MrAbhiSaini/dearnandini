@@ -423,3 +423,30 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+
+// Premium Scroll Reveal (AOS) Engine with Auto-Delay Fix
+function initScrollReveal() {
+    const revealItems = document.querySelectorAll(".scroll-reveal");
+    
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1, // Element ka 10% hissa dikhte hi animation trigger ho
+        rootMargin: "0px 0px -30px 0px"
+    });
+
+    revealItems.forEach(item => {
+        revealObserver.observe(item);
+    });
+}
+
+// Dono conditions handle karne ke liye (Hidden wrapper removal detection)
+document.addEventListener("DOMContentLoaded", function () {
+    // 500ms ka chota sa delay taaki hidden wrapper reveal hone ka time mil jaye
+    setTimeout(initScrollReveal, 600);
+});

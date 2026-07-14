@@ -862,3 +862,112 @@ body {
     0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(255,77,109,0.8)); }
     50% { transform: scale(1.08); filter: drop-shadow(0 0 25px rgba(255,77,109,1)); }
 }
+
+/* ==========================================
+   PREMIUM 3D BUTTONS & INTERACTIVE EFFECTS 
+   ========================================== */
+
+/* Buttons ko 3D look dene ke liye base setup */
+.btn.premium-btn, #start-journey-btn, .vault-btn {
+    position: relative;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Hover ya Mobile Touch/Active par 3D Pop aur Shadow Effect */
+.btn.premium-btn:hover, .btn.premium-btn:active,
+#start-journey-btn:hover, #start-journey-btn:active {
+    transform: translateY(-5px) scale(1.03) rotateX(5deg) !important;
+    box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4), 
+                0 5px 10px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* Button click hote hi halka sa andar dabne ka effect (Click Feel) */
+.btn.premium-btn:active, #start-journey-btn:active {
+    transform: translateY(-2px) scale(0.98) !important;
+    box-shadow: 0 5px 10px rgba(212, 175, 55, 0.2) !important;
+}
+
+/* Button ke andar ek shining lights glass effect jo touch par daudegi */
+.btn.premium-btn::after, #start-journey-btn::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: none;
+    z-index: -1;
+}
+
+.btn.premium-btn:hover::after, .btn.premium-btn:active::after,
+#start-journey-btn:hover::after, #start-journey-btn:active::after {
+    left: 120%;
+    transition: all 0.6s ease-in-out;
+}
+
+/* ==========================================
+   ULTRA-COMPATIBLE DYNAMIC SMOOTH REVEAL ENGINE
+   ========================================== */
+
+/* Shuruat me timeline content ko scale down, blur aur slide position par hold rakhega */
+.scroll-reveal {
+    opacity: 0 !important;
+    filter: blur(10px) !important;
+    transition: opacity 0.8s ease, filter 0.8s ease, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    will-change: transform, opacity, filter;
+}
+
+/* Base structural offset directions */
+.timeline-item.reveal-left {
+    transform: translate3d(-100px, 0, 0) scale(0.95) !important;
+}
+
+.timeline-item.reveal-right {
+    transform: translate3d(100px, 0, 0) scale(0.95) !important;
+}
+
+.gallery-card.reveal-up {
+    transform: translate3d(0, 60px, 0) scale(0.98) !important;
+}
+
+/* JAB ELEMENTS ACTIVE HONGE: dynamic center normalization without breaking template layouts */
+.scroll-reveal.active {
+    opacity: 1 !important;
+    filter: blur(0) !important;
+    transform: translate3d(0, 0, 0) scale(1) !important;
+}
+
+/* ==========================================
+   ULTRA-PREMIUM MOBILE RESPONSIVE MATRIX
+   ========================================== */
+@media (max-width: 480px) {
+    /* Hero Section image wrapper code */
+    .hero-photo-wrapper, .glow-ring {
+        max-width: 140px !important;
+        max-height: 140px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Target fonts size */
+    .hero-title {
+        font-size: 1.8rem !important;
+    }
+
+    /* Main Container layout structural logic reset */
+    #main-content, .content-wrapper, .hero-section {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+        box-sizing: border-box !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    /* Text blocks bounding boxes reset */
+    body {
+        overflow-x: hidden !important;
+    }
+}

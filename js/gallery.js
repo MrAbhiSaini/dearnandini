@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             lightbox.classList.add("active");
         }, 10);
-        document.body.style.overflow = "hidden"; // Disable scroll when open
+        // document.body.style.overflow = "hidden"; // Disable scroll when open
     }
 
     function closePremiumLightbox() {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             lightbox.classList.add("hidden");
         }, 500); // Time mirrors style transitions
-        document.body.style.overflow = "auto"; // Re-enable window scroll
+        // document.body.style.overflow = "auto"; // Re-enable window scroll
     }
 
     closeLightbox.addEventListener("click", closePremiumLightbox);
