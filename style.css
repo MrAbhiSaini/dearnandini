@@ -647,12 +647,15 @@ body {
     .timeline-dot { left: 13px !important; }
     
     .letter-card { padding: 40px 25px; }
-    .letter-text-container {
-        font-size: 1.1rem;
-        font-family: 'Poppins', 'Montserrat', -apple-system, sans-serif !important;
-        line-height: 1.6;
-        letter-spacing: 0.3px;
-    }
+    .letter-text-container, 
+.letter-text-container *, 
+.letter-card p, 
+#typing-text {
+    font-family: 'Poppins', 'Montserrat', -apple-system, sans-serif !important;
+    font-size: 1.1rem !important;
+    line-height: 1.7 !important;
+    letter-spacing: 0.5px !important;
+}
 
     .surprise-title { font-size: 2.5rem; }
     .surprise-content { padding: 35px 20px; }
