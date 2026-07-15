@@ -1,6 +1,6 @@
 /**
  * ==========================================================================
- * DEAR NANDINI V2 - UNIVERSAL MASTER CODE (CLEAN ORIGINAL FIXED STATE)
+ * DEAR NANDINI V2 - UNIVERSAL MASTER CODE (HEX SECURED STATE)
  * ==========================================================================
  */
 
@@ -19,24 +19,30 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // PREMIUM PASSWORD MODAL SYSTEM LOGIC (CINEMATIC STOP FLOW)
     // ==========================================================================
-    const correctPassword = "Nandu"; 
+    // "password"
+    const p1_hex = "616268693134336e616e6475"; 
+    
     const passwordModal = document.getElementById('passwordModal');
     const submitPassBtn = document.getElementById('submitPassBtn');
     const unlockPassInput = document.getElementById('unlockPass');
     const errorMsg = document.getElementById('errorMsg');
     const loaderInteractivePulse = document.getElementById('loader-interactive-pulse');
 
-    // 1. TAP TO UNVEIL par click karte hi loading audio shuru hoga aur password box aayega
+    // Helper function to decode text smoothly
+    function _parse(h) {
+        let s = '';
+        for (let i = 0; i < h.length; i += 2) {
+            s += String.fromCharCode(parseInt(h.substr(i, 2), 16));
+        }
+        return s;
+    }
+
     if (loaderInteractivePulse) {
         loaderInteractivePulse.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            // Instantly play introductory piano track exactly on tap!
             if (typeof switchTrack === "function") {
                 switchTrack('loading');
             }
-
-            // Password modal open hoga aur site process safely pause rahegi
             if (passwordModal) {
                 passwordModal.style.setProperty('display', 'flex', 'important');
             }
@@ -58,10 +64,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function verifyAndUnlock() {
         if (!unlockPassInput || !passwordModal || !loader) return;
         
-        const inputVal = unlockPassInput.value;
+        const inputVal = unlockPassInput.value.trim();
 
-        if (inputVal === correctPassword) {
-            // SUCCESS: Sahi password daalne par hi modal aur input overlay hatega
+        if (inputVal === _parse(p1_hex)) {
             passwordModal.style.setProperty('display', 'none', 'important');
             
             const pulseWrapper = document.getElementById("loader-interactive-pulse");
@@ -74,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (progressZone) progressZone.style.setProperty('display', 'block', 'important');
             }, 400);
 
-            // 🎯 BACKGROUND ANIMATION COUNTER: Progress bar ab sahi password ke BAAD hi chalega
             let progress = 0;
             const loadingInterval = setInterval(() => {
                 progress += 2.5; 
@@ -95,7 +99,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             musicToggle.classList.add("playing");
                         }
                         
-                        // Everything runs instantly after loading bar finishes
                         spawnRosePetals();
                         initPremiumCountdown();
 
@@ -112,7 +115,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 60);
             
         } else {
-            // Galat password check code block
             if (errorMsg) errorMsg.style.setProperty('display', 'block', 'important');
             unlockPassInput.value = '';
             unlockPassInput.focus();
@@ -130,7 +132,6 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentTrackKey = null;
     let isGlobalMuted = false;
 
-    // Cross-fade Audio Core
     function switchTrack(newTrackKey) {
         if (isGlobalMuted || currentTrackKey === newTrackKey) return;
 
@@ -185,10 +186,8 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // Initialize background stars immediately
     initCinematicStars();
 
-    // 3. SCROLL & SECTION OBSERVATION LOGIC
     window.addEventListener("scroll", () => {
         const scrollElements = document.querySelectorAll(".timeline-item");
         scrollElements.forEach(el => {
@@ -232,7 +231,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
     
-    // 4. ANIMATION ENGINES (STARS, HEARTS & PETALS)
     function initCinematicStars() {
         const canvas = document.getElementById("stars-canvas");
         if (!canvas) return;
@@ -408,7 +406,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const secureVaultContent = document.getElementById("secure-vault-content");
     const vaultErrorMsg = document.getElementById("vault-error-msg");
 
-    const VAULT_PASSWORD = "nandini143abhi@"; 
+    // "password"
+    const p2_hex = "6e616e64696e693134336162686940"; 
 
     if (vaultPasswordInput) {
         vaultPasswordInput.addEventListener("focus", () => {
@@ -425,7 +424,7 @@ document.addEventListener("DOMContentLoaded", () => {
         unlockVaultBtn.addEventListener("click", () => {
             const enteredPass = vaultPasswordInput.value.trim();
 
-            if (enteredPass === VAULT_PASSWORD) {
+            if (enteredPass === _parse(p2_hex)) {
                 vaultLockScreen.style.transform = "scale(0.9)";
                 vaultLockScreen.style.opacity = "0";
                 
