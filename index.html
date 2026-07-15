@@ -112,6 +112,16 @@
         </div>
     </div>
 
+    <div id="passwordModal" class="pass-modal-overlay" style="display: none;">
+    <div class="pass-modal-content">
+        <h3>Journey of Love ✨</h3>
+        <p>Enter the magic word to unlock her birthday universe:</p>
+        <input type="password" id="unlockPass" placeholder="Enter password here..." autocomplete="off">
+        <button id="submitPassBtn">Unlock Magic ❤️</button>
+        <p id="errorMsg" class="error-msg" style="display: none;">Oops! Incorrect password. Try again! 🚫</p>
+    </div>
+</div>
+
     <!-- AUDIO ELEMENT (Hidden, Controlled via JS) -->
     <audio id="bg-track-loading" loop><source src="music/piano_intro.mp3" type="audio/mpeg"></audio>
     <audio id="bg-track-hero" loop><source src="music/heeriye_inst.mp3" type="audio/mpeg"></audio>
