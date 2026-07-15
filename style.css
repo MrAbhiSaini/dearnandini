@@ -1194,3 +1194,61 @@ body {
     from { opacity: 0; transform: scale(0.9); }
     to { opacity: 1; transform: scale(1); }
 }
+
+/* ==========================================================================
+   PREMIUM MOBILE EDGE-TO-EDGE & ALIGNMENT MASTER FIXES
+   ========================================================================== */
+
+/* 1. Global Reset for edge-to-edge flow */
+html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* 2. Main wrappers reset */
+#main-content, section {
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* ==========================================================================
+   DESKTOP + MOBILE COMBINED SURPRISE SMART RE-ALIGNMENT
+   ========================================================================== */
+
+/* 1. Global structural safe updates */
+.celebrate-card, 
+.surprise-content > div {
+    height: auto !important;
+    min-height: max-content !important;
+    overflow: visible !important;
+    padding-bottom: 25px !important; 
+    box-sizing: border-box !important;
+}
+
+/* 2. MOBILE ONLY FIX (768px se choti screens ke liye) */
+@media (max-width: 768px) {
+    .surprise-content {
+        width: 88% !important;
+        max-width: 380px !important;
+        padding: 30px 15px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+}
+
+/* 3. DESKTOP ONLY FIX (769px se badi screens par bada aur premium dikhega) */
+@media (min-width: 769px) {
+    .surprise-content {
+        width: 100% !important;
+        max-width: 650px !important; /* Wapas purana desktop premium scale lock kiya */
+        padding: 50px 40px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
+    }
+}
