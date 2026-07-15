@@ -16,6 +16,109 @@ document.addEventListener("DOMContentLoaded", () => {
     const initialPrompt = document.getElementById("loader-initial-prompt");
     const progressZone = document.getElementById("loader-progress-zone");
 
+    // ==========================================================================
+    // PREMIUM PASSWORD MODAL SYSTEM LOGIC (CINEMATIC STOP FLOW)
+    // ==========================================================================
+    const correctPassword = "Nandu"; 
+    const passwordModal = document.getElementById('passwordModal');
+    const submitPassBtn = document.getElementById('submitPassBtn');
+    const unlockPassInput = document.getElementById('unlockPass');
+    const errorMsg = document.getElementById('errorMsg');
+    const loaderInteractivePulse = document.getElementById('loader-interactive-pulse');
+
+    // 1. TAP TO UNVEIL par click karte hi loading audio shuru hoga aur password box aayega
+    if (loaderInteractivePulse) {
+        loaderInteractivePulse.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Instantly play introductory piano track exactly on tap!
+            if (typeof switchTrack === "function") {
+                switchTrack('loading');
+            }
+
+            // Password modal open hoga aur site process safely pause rahegi
+            if (passwordModal) {
+                passwordModal.style.setProperty('display', 'flex', 'important');
+            }
+        });
+    }
+
+    if (submitPassBtn) {
+        submitPassBtn.addEventListener('click', verifyAndUnlock);
+    }
+
+    if (unlockPassInput) {
+        unlockPassInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                verifyAndUnlock();
+            }
+        });
+    }
+
+    function verifyAndUnlock() {
+        if (!unlockPassInput || !passwordModal || !loader) return;
+        
+        const inputVal = unlockPassInput.value;
+
+        if (inputVal === correctPassword) {
+            // SUCCESS: Sahi password daalne par hi modal aur input overlay hatega
+            passwordModal.style.setProperty('display', 'none', 'important');
+            
+            const pulseWrapper = document.getElementById("loader-interactive-pulse");
+            const progressZone = document.getElementById("loader-progress-zone");
+
+            if (pulseWrapper) pulseWrapper.style.opacity = "0";
+            
+            setTimeout(() => {
+                if (pulseWrapper) pulseWrapper.classList.add("hidden");
+                if (progressZone) progressZone.style.setProperty('display', 'block', 'important');
+            }, 400);
+
+            // 🎯 BACKGROUND ANIMATION COUNTER: Progress bar ab sahi password ke BAAD hi chalega
+            let progress = 0;
+            const loadingInterval = setInterval(() => {
+                progress += 2.5; 
+                if (progressFill) progressFill.style.width = `${progress}%`;
+
+                if (progress >= 100) {
+                    clearInterval(loadingInterval);
+                    
+                    loader.style.opacity = "0";
+                    setTimeout(() => {
+                        loader.classList.add("hidden");
+                        if (mainContent) {
+                            mainContent.classList.remove("hidden");
+                            mainContent.classList.add("fade-in-premium");
+                        }
+                        if (musicToggle) {
+                            musicToggle.classList.remove("hidden");
+                            musicToggle.classList.add("playing");
+                        }
+                        
+                        // Everything runs instantly after loading bar finishes
+                        spawnRosePetals();
+                        initPremiumCountdown();
+
+                        if (typeof window.startTypewriterAnimation === "function") {
+                            window.startTypewriterAnimation();
+                        }
+
+                        setTimeout(() => { switchTrack('hero'); }, 600);
+
+                        startFloatingHearts();
+                        setupSectionAudioObserver();
+                    }, 1000);
+                }
+            }, 60);
+            
+        } else {
+            // Galat password check code block
+            if (errorMsg) errorMsg.style.setProperty('display', 'block', 'important');
+            unlockPassInput.value = '';
+            unlockPassInput.focus();
+        }
+    }
+
     // Audio Matrix Config
     const tracks = {
         loading: document.getElementById("bg-track-loading"),
@@ -84,63 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize background stars immediately
     initCinematicStars();
-
-    // 2. THE CINEMATIC UNLOCK INTERACTION EXECUTOR
-    if (loader) {
-        loader.addEventListener("click", function startProcess() {
-            loader.removeEventListener("click", startProcess);
-            
-            // Instantly play introductory piano track
-            switchTrack('loading');
-
-            const pulseWrapper = document.getElementById("loader-interactive-pulse");
-            const progressZone = document.getElementById("loader-progress-zone");
-
-            if (pulseWrapper) pulseWrapper.style.opacity = "0";
-            
-            setTimeout(() => {
-                if (pulseWrapper) pulseWrapper.classList.add("hidden");
-                if (progressZone) progressZone.classList.remove("hidden");
-            }, 400);
-
-            let progress = 0;
-            const loadingInterval = setInterval(() => {
-                progress += 2.5; 
-                if (progressFill) progressFill.style.width = `${progress}%`;
-
-                if (progress >= 100) {
-                    clearInterval(loadingInterval);
-                    
-                    loader.style.opacity = "0";
-                    setTimeout(() => {
-                        loader.classList.add("hidden");
-                        if (mainContent) {
-                            mainContent.classList.remove("hidden");
-                            mainContent.classList.add("fade-in-premium");
-                        }
-                        if (musicToggle) {
-                            musicToggle.classList.remove("hidden");
-                            musicToggle.classList.add("playing");
-                        }
-                        
-                        // 🌟 GLOBAL ALIGNMENT TRIGGER: Everything runs instantly on load!
-                        spawnRosePetals();
-                        initPremiumCountdown();
-
-                        // Automatically execute letter typewriter right away
-                        if (typeof window.startTypewriterAnimation === "function") {
-                            window.startTypewriterAnimation();
-                        }
-
-                        setTimeout(() => { switchTrack('hero'); }, 600);
-
-                        startFloatingHearts();
-                        setupSectionAudioObserver();
-                    }, 1000);
-                }
-            }, 60);
-        });
-    }
 
     // 3. SCROLL & SECTION OBSERVATION LOGIC
     window.addEventListener("scroll", () => {
@@ -278,8 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const tagline = document.querySelector(".hero-tagline");
         if (!tagline) return;
 
-        // 🌟 APNI TARGET DATE YAHAN SET KARO (Year, Month-1, Day, Hour, Minute)
-        // JavaScript me Month 0 se shuru hota hai (0 = Jan, 6 = July)
         const targetDate = new Date(2026, 6, 23, 0, 0, 0).getTime(); 
 
         const countdownInterval = setInterval(() => {
@@ -292,13 +336,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Time calculations for days, hours, minutes and seconds
             const days = Math.floor(difference / (1000 * 60 * 60 * 24));
             const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-            // Premium Luxury UI String Structure
             tagline.innerHTML = `
                 <div style="display: flex; gap: 15px; justify-content: center; margin-bottom: 15px; font-family: var(--font-montserrat);">
                     <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(214,175,55,0.2); padding: 8px 12px; border-radius: 4px; min-width: 60px;">
@@ -321,6 +363,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }, 1000);
     }
+
     // ==========================================================================
     // UPGRADE: FUNNY CLIPS MODAL WITH AUDIO MATRIX OVERRIDE
     // ==========================================================================
@@ -340,7 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
             
             funnyPlayer.currentTime = 0;
             funnyPlayer.volume = 1.0; 
-            funnyPlayer.play().catch(err => console.log("Video playback note:", err));
+            funnyPlayer.play().catch(err => console.log("Video playback notice:", err));
         });
     }
 
@@ -365,11 +408,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const secureVaultContent = document.getElementById("secure-vault-content");
     const vaultErrorMsg = document.getElementById("vault-error-msg");
 
-    // YAHAN APNA VALUATION PASSWORD SETUP KIJIYE
     const VAULT_PASSWORD = "nandini143abhi@"; 
 
     if (vaultPasswordInput) {
-        // Luxury glow effects on text box input focus
         vaultPasswordInput.addEventListener("focus", () => {
             vaultPasswordInput.style.borderColor = "var(--gold-primary)";
             vaultPasswordInput.style.boxShadow = "0 0 15px rgba(214, 175, 55, 0.25)";
@@ -385,7 +426,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const enteredPass = vaultPasswordInput.value.trim();
 
             if (enteredPass === VAULT_PASSWORD) {
-                // Sahi key daalne par custom upscale presentation sequence trigger hoga
                 vaultLockScreen.style.transform = "scale(0.9)";
                 vaultLockScreen.style.opacity = "0";
                 
@@ -406,11 +446,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     vaultErrorMsg.classList.remove("hidden");
                     vaultErrorMsg.textContent = "Incorrect Secret Key! Try again. 🤫";
                     
-                    // Premium Error Feedbacks
                     vaultPasswordInput.style.borderColor = "#ff4d6d";
                     vaultPasswordInput.style.boxShadow = "0 0 15px rgba(255, 77, 109, 0.3)";
                     
-                    // Simple programmatic shake feedback
                     vaultLockScreen.style.transform = "translateX(-10px)";
                     setTimeout(() => { vaultLockScreen.style.transform = "translateX(10px)"; }, 100);
                     setTimeout(() => { vaultLockScreen.style.transform = "translateX(0)"; }, 200);
@@ -424,7 +462,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-// Premium Scroll Reveal (AOS) Engine with Auto-Delay Fix
 function initScrollReveal() {
     const revealItems = document.querySelectorAll(".scroll-reveal");
     
@@ -436,7 +473,7 @@ function initScrollReveal() {
             }
         });
     }, {
-        threshold: 0.1, // Element ka 10% hissa dikhte hi animation trigger ho
+        threshold: 0.1, 
         rootMargin: "0px 0px -30px 0px"
     });
 
@@ -445,8 +482,6 @@ function initScrollReveal() {
     });
 }
 
-// Dono conditions handle karne ke liye (Hidden wrapper removal detection)
 document.addEventListener("DOMContentLoaded", function () {
-    // 500ms ka chota sa delay taaki hidden wrapper reveal hone ka time mil jaye
     setTimeout(initScrollReveal, 600);
 });
