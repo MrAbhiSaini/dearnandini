@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // PREMIUM PASSWORD MODAL SYSTEM LOGIC (CINEMATIC STOP FLOW)
     // ==========================================================================
     // "password"
-    const p1_hex = "616268693134336e616e6475"; 
+    const p1_hex = "6e616e64756a61616e313433"; 
     
     const passwordModal = document.getElementById('passwordModal');
     const submitPassBtn = document.getElementById('submitPassBtn');
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const vaultErrorMsg = document.getElementById("vault-error-msg");
 
     // "password"
-    const p2_hex = "6e616e64696e693134336162686940"; 
+    const p2_hex = "6e616e64756a61616e313433"; 
 
     if (vaultPasswordInput) {
         vaultPasswordInput.addEventListener("focus", () => {
